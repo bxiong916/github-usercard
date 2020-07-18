@@ -4,8 +4,8 @@
     https://api.github.com/users/<your name>
 */
 
-const { default: Axios } = require("axios");
-
+// const { default: Axios } import "axios";
+import axios from "axios";
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -97,7 +97,6 @@ const cardsAttach = document.querySelector('.cards');
     location.textContent = obj.location;
     profile.textContent = 'Profile: '
     profileAddress.textContent = obj.html_url;
-    //profileAddress.textContent = `${obj.html_url}`;
     profileAddress.setAttribute('href', obj.html_url);
     followers.textContent = `Followers: ${obj.followers}`;
     following.textContent = `Following: ${obj.following}`;
