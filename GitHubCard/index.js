@@ -62,12 +62,8 @@ const followersArray = [];
     bigknell
 */
 
-const cardsAttach = document.querySelector('.cards');
 
-  function createUserCard(obj){
-
-    // Create DOM elements
-
+function createUserCard(obj){
     const card = document.createElement('div');
     const userImg = document.createElement('img');
     const cardInfo = document.createElement('div');
@@ -81,15 +77,16 @@ const cardsAttach = document.querySelector('.cards');
     const bio = document.createElement('p');
 
 
-    // Set classes
-
-    card.className = ('card');
-    cardInfo.className = ('card-info');
-    name.className = ('name');
-    userName.className = ('username');
-
-
-    // Set contents / text
+    card.appendChild(userImg);
+    card.appendChild(cardInfo);
+    cardInfo.appendChild(name);
+    cardInfo.appendChild(userName);
+    cardInfo.appendChild(location);
+    cardInfo.appendChild(profile);
+    profile.appendChild(profileAddress);
+    cardInfo.appendChild(followers);
+    cardInfo.appendChild(following);
+    cardInfo.appendChild(bio);
 
     userImg.setAttribute('src', obj.avatar_url);
     name.textContent = obj.name;
@@ -102,41 +99,33 @@ const cardsAttach = document.querySelector('.cards');
     following.textContent = `Following: ${obj.following}`;
     bio.textContent = `Bio: ${obj.bio}`;
 
-
-    // Create Structure
-
-    card.appendChild(userImg);
-    card.appendChild(cardInfo);
-    cardInfo.appendChild(name);
-    cardInfo.appendChild(userName);
-    cardInfo.appendChild(location);
-    cardInfo.appendChild(profile);
-    profile.appendChild(profileAddress);
-    cardInfo.appendChild(followers);
-    cardInfo.appendChild(following);
-    cardInfo.appendChild(bio);
-
+    card.className = ('card');
+    cardInfo.className = ('card-info');
+    name.className = ('name');
+    userName.className = ('username');
 
     return card;
 
+}
 
-  }
+const cardsAttach = document.querySelector('.cards');
 
-  // rendering my card 
-  axios.get('https://api.github.com/users/bxiong916')
-  .then(response => {
 
-    const gitData = response.data;
+// rendering my card 
+axios.get('https://api.github.com/users/bxiong916')
+.then(response => {
 
-    cardsAttach.appendChild(createUserCard(gitData));
+  const gitData = response.data;
 
-  })
+  cardsAttach.appendChild(createUserCard(gitData));
 
-  .catch(error => {
+})
+
+.catch(error => {
     console.log('Here is the problem', error);
   })
 
-// rendering the instructor cards
+  // rendering the instructor cards
 
 const instructors = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
 
